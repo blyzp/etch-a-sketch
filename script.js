@@ -14,20 +14,20 @@ const tileChange = 0;
 
 /* Content */
 
-const grid = document.querySelector('#grid');
-const clear = document.querySelector('#clear');
+const grid = document.querySelector("#grid");
+const clear = document.querySelector("#clear");
 
 
 
 /* Events */
 
-this.addEventListener('load', () => {
+this.addEventListener("load", () => {
     buildGrid(16);
     hoverGrid(tileChange);
 });
 
 
-clear.addEventListener('click', () => {
+clear.addEventListener("click", () => {
     grid.innerHTML = "";
     let size = prompt("Enter the size of the grid:");
     buildGrid(size);
@@ -42,13 +42,13 @@ function buildGrid(size) {
     if (isNaN(size) == true) {
         return alert("Please choose a number.");
     } else if (size > 50) {
-        return alert("Please choose a number below 50.");
+        return alert("Please choose a number up to 50.");
     } else {
         grid.style.cssText = `grid-template-columns: repeat(${size}, 20px); grid-template-rows: repeat(${size}, 20px);`;
 
         for (let i = 0; i < Math.pow(size, 2); i++) {
-            const tile = document.createElement('div');
-            tile.classList.add('tile');   
+            const tile = document.createElement("div");
+            tile.classList.add("tile");   
             grid.appendChild(tile);
         }
     }
@@ -69,8 +69,8 @@ function hoverGrid(type) {
 
 
 function hoverGridTrail() {
-    grid.addEventListener('mouseover', e => {
-        if (e.target.className == 'tile') {
+    grid.addEventListener("mouseover", e => {
+        if (e.target.className == "tile") {
             e.target.style.border = tileBorder;
             e.target.style.backgroundColor = setColor(tileBgCol);
         }
@@ -85,7 +85,7 @@ function hoverGridTrail() {
 
 function hoverGridGradient() {
     Array.from(grid.children).forEach(tile => {
-        tile.addEventListener('mouseover', e => {         
+        tile.addEventListener("mouseover", e => {         
             let opacity = +tile.style.opacity;   
             tile.style.border = tileBorder;
             tile.style.backgroundColor = setColor(tileBgCol);
